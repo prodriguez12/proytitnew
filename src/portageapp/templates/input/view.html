@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+ {% block content %} 
+	<h1>{{titulo}}</h1>
+	<ul>
+		<li><b> Set de Datos :</b> {{input.GPS_layer}} </li>
+		<p></p>
+		<li><b> Red Vial :</b> {{input.red_vial_layer}} </li>
+		<p></p>
+		<li><b> Ruta de Base de Datos :</b> {{input.gbd_root}} </li>
+		<p></p>
+		<li><b> Sistema de Medidas :</b> {{input.metrica}} </li>
+		<p></p>
+		<li><b> Comprimido de Base de Datos :</b> {{input.gbd.path}} </li>
+		<p></p>
+		<li><b> Descripción :</b> {% if input.description != '' %}{{input.description}}{% else %} Descripcion se esta escribiendo {% endif %} </li>
+	</ul>
+
+
+<form action="/apply/{{input.id}}" class="post-form" method="post">
+	<ul>
+
+		<li> <b>Parámetros:</b> </li>
+		<li> 
+    <label for="spd_tol">Tolerancia de Velocidad : </label>
+    <input id="spd_tol" type="text" name="spd_tol">
+     </li>
+		<li>
+    <label for="buffr">Buffer : </label>
+    <input id="buffr" type="text" name="buffr">
+    </li>
+		<li> 
+    <label for="n_freq">Frecuencia de Muestreo : </label>
+    <input id="n_freq" type="text" name="n_freq">
+     </li>
+		<li> 
+    <label for="np">Limite de Puntos : </label>
+    <input id="np" type="text" name="np">
+    </li>
+	</ul>
+
+	<button type="submit" class="btn btn-default"> Aplicar algoritmo</button>
+</form>
+
+	<p> </p>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+	<h1>Entrega Sprint 4</h1>
+	{% if user.is_authenticated %}
+  		Hola {{ user.username }}!
+  		<p><a href="{% url 'logout' %}">logout</a></p>
+  		<p>Comienze la visita  </p>
+	{% else %}
+		<p>No estas logeado</p>
+ 		<a href="{% url 'login' %}">login</a> |
+  		<a href="{% url 'signup' %}">registrarse</a>
+	{% endif %}
+{% endblock %}

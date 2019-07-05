@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+ {% block content %} 
+	<h1>{{titulo}}</h1>
+	<ul>
+		<li><b> Inicio de ejecución :</b> {{output.start}} </li>
+		<p></p>
+		<li><b> Final de ejecución :</b> {{output.finish}} </li>
+		<p></p>
+		<li><b> Capa de Resultados :</b> {{output.start}} </li>
+		<p></p>
+		<li><b> Archivo de Texto con los Resultados :</b> {{output.d_res}} </li>
+		<p></p>
+		<li><b> Archivo de Texto con los Datos de GPS :</b> {{output.d_gps}} </li>
+		<p></p>
+		<p></p>
+		<p><b>Parámetros Usados</b></p>
+		<p></p>
+		<li><b> Tolerancia de velocidad :</b> {{output.spd_tol}} </li>
+		<p></p>
+		<li><b> Buffer :</b> {{output.buffr}} </li>
+		<p></p>
+		<li><b> Frecuencia de Muestreo :</b> {{output.n_freq}} </li>
+		<p></p>
+		<li><b> Límite de Puntos :</b> {{output.n_points}} </li>
+		<p></p>
+	</ul>
+
+{% endblock %}

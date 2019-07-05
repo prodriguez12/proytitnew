@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+ {% block content %} 
+	<h1>{{titulo}}</h1>
+
+<table>
+	<tr>
+		<th> Id </th>
+		<th> </th>
+		<th> Ruta de Archivo </th>
+		<th> </th>
+		<th> Descripcion </th>
+		<th> </th>
+		<th> Enlace </th>
+	</tr>
+{% for item in lista %}
+	<tr>
+		<td> {{item.id}} </td>
+		<td> </td>
+		<td> {{item.root}} </td>
+		<td> </td>
+		<td> {{item.description}} </td>
+		<td> </td>
+		<td> <a href="/output/{{item.id}}/"> Ver </a> </td>
+	</tr>
+
+{% endfor %}
+</table>
+ {% endblock %}
