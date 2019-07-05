@@ -17,18 +17,25 @@ def home_view(request, *args, **kwargs):
 
 @login_required(login_url='/users/login/')
 def apply_view(request, input_id):
-	inpt = Input.objects.get(id=input_id)
-	root = inpt.gbd.path
-	start = datetime.now()
-	#desc = "salida de "+ root_file.name
-	#new_output = Output(description = desc)
-	#algoritmo(root,spd_tol,buffr,n_freq,np,input_data)
-	#new_output.save_file()
-	finish = datetime.now()
-	lista = Output.objects.all()
-	context = {
-		"titulo": "Listado de Outputs",
-		"lista": lista
-	}
+	if request.method == 'POST':
+		user = request.user
+		inpt = Input.objects.get(id=input_id)
+		root = inpt.gbd_root
+		spd_tol = int(request.POST['spd_tol'])
+		buffr = int(request.POST['buffr'])
+		n_freq = int(request.POST['n_freq'])
+		np = int(request.POST['np'])
+		input_data = inpt.GPS_layer
+		start = datetime.now()
+		final_layer = algoritmo(root,spd_tol,buffr,n_freq,np,input_data)
+		finish = datetime.now()
+		new_output = Output(origin = inpt, owner = user, start = start, finish = finish, clean_layer = final_layer, 
+			spd_tol = spd_tol,buffr = buffr, n_freq = n_freq, n_points = np)
+		new_output.save()
+		lista = inpt.output_set.all()
+		context = {
+			"titulo": "Listado de Outputs",
+			"lista": lista
+		}
 
-	return render(request, "Output/list.html", context)
+		return render(request, "Output/list.html", context)

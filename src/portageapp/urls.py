@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.views.generic.base import TemplateView
 from input.views import input_new_view, input_single_view, input_list_view
 from output.views import output_single_view
-from pages.views import home_view
+from pages.views import home_view, apply_view
 
 
 urlpatterns = [
@@ -29,6 +29,6 @@ urlpatterns = [
     url(r'inputs/', input_list_view, name = 'inputs'),
     url(r'input/new', input_new_view, name = 'inputnew'),
     url(r'output/<int:output_id>/', output_single_view, name = 'output'),
-    #url(r'apply/<int:input_id>', apply_view, name='process'),
+    url(r'apply/<int:input_id>', apply_view, name='process'),
     url(r'', home_view, name='home'),
 ]

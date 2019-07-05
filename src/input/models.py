@@ -15,7 +15,7 @@ class Input(models.Model):
 	owner = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
 	red_vial_layer = models.CharField(max_length = 500, null=False, blank=False)
 	GPS_layer = models.CharField(max_length = 500, null=False, blank=False)
-	gbd = models.FileField(blank=False, upload_to='uploads/%Y_%M_%d/')
+	gbd = models.FileField(blank=False, upload_to=input_directory_path)
 	description = models.TextField(default='')
 	gbd_root = models.CharField(max_length = 500)
 	metrica = models.CharField(max_length =500, blank=False)

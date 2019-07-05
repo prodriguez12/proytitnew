@@ -19,8 +19,8 @@ def output_single_view(request, output_id):
 @login_required(login_url='/users/login/')
 def output_list_view(request, *args, **kwargs):
 	#return  HttpResponse("<h1>Entrega Sprint 2</h1>")
-	lista = Output.objects.filter(origin__owner__pk=request.user.id)
-	print(lista)
+	user = request.user
+	lista = user.output_set.all()
 	context = {
 		"titulo": "Listado de Outputs",
 		"lista": lista
@@ -28,12 +28,13 @@ def output_list_view(request, *args, **kwargs):
 	return render(request, "Output/list.html", context)
 
 @login_required(login_url='/users/login/')
-def input_output_list_view(request, *args, **kwargs):
+def input_output_list_view(request, input_id):
 	#return  HttpResponse("<h1>Entrega Sprint 2</h1>")
-	lista = Output.objects.all()
-	print(lista)
+	inpt = Input.objects.get(id=input_id)
+	titulo = "Listado de Outputs de " + inpt
+	lista = inpt.output_set.all()
 	context = {
-		"titulo": "Listado de Outputs",
+		"titulo": titulo,
 		"lista": lista
 	}
 	return render(request, "Output/list.html", context)
